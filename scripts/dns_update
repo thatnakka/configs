@@ -1,0 +1,23 @@
+#! /bin/bash
+
+#This script is specific to `kitchen.lab`
+
+eval $(ssh-agent)
+
+echo "Adding DNS db files to branch"
+
+git add /home/mgmt/chef-repo/chef/cookbooks/lab-dns/files/default/db.10
+git add /home/mgmt/chef-repo/chef/cookbooks/lab-dns/files/default/db.lab
+
+echo "Enter the commit message"
+read commit_message
+git commit -m "$commit_message"
+
+echo "Pushing changes to Github"
+git push origin master
+
+echo "Uploading new 'lab-dns' cookbook to Chef server"
+knife cookbook upload lab-dns --config /home/mgmt/chef-repo/.chef/knife.rb
+
+echo "Run chef on DNS server to propagate changes"
+ssh -i /home/mgmt/.ssh/prod.key mgmt@dns.lab "sudo chef-client"

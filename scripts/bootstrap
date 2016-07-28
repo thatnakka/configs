@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ip="$1"
+node="$2"
+user="$3"
+
+knife bootstrap $ip -N $node -x $user --sudo
