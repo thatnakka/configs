@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -eu
+clear
+
+cd /storage/.kodi/addons/
+
+scp nmonga@monga-whitebox.lab:~/addons_package.tar.gz addons_package.tar.gz
+
+echo "Unpacking your addons"
+
+tar -xvf addons_package.tar.gz
+
+echo "Moving addons into place"
+
+mv addons_package/* /storage/.kodi/addons/
+
+#### FOR TESTING PURPOSES ####
+#mv addons_package/* temp_dir/
+
+echo "Removing temporary directory"
+
+rmdir addons_package
