@@ -6,6 +6,8 @@ clear
 cd /storage/.kodi/addons/
 
 scp nmonga@monga-whitebox.lab:~/addons_package.tar.gz addons_package.tar.gz
+# NOTE: "monga-whitebox.lab" is an internal DNS name. The machine
+# will need to point it's DNS to the internal nameserver in order for this to work.
 
 echo "Unpacking your addons"
 
