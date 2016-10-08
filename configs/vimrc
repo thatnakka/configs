@@ -1,0 +1,9 @@
+syntax on
+set smarttab
+set shiftwidth=4
+set softtabstop=4
+set ai
+set si
+set mouse=a
+colorscheme jellybeans
+"set number
