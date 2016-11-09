@@ -1,0 +1,15 @@
+#! /bin/bash
+
+set -eu
+
+if [[ $(diff -qr /media/whitebox_movies/ /usr/spool/) == '' ]]; then
+  #if the directories have the same content, nothing will be copied
+  :
+elif [[ $(ls /media/whitebox_movies/) == '' ]]; then
+  #if the source directory is empty, exit
+  :
+else
+  bash /home/copy/scripts/movie_copy
+fi
+
+# reference: http://www.cyberciti.biz/faq/linux-unix-shell-check-if-directory-empty/

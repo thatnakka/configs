@@ -1,0 +1,30 @@
+#! /bin/bash
+
+set -eu
+
+COPY_KEY="/home/copy/keys/whitebox_copy.pem" # << UPDATE WITH NEW KEY LOCATION
+COPY_DESTINATION="/usr/spool/" #new drive on fileserver
+COPY_SOURCE="copy@monga-whitebox.lab:/media/Videos/TEMP/new_movies/*" # better naming convention maybe?
+
+cat <<EOF >> /home/copy/copy_log/files.$(date +"%Y%m%d_%H%M%S")
+NEW FILES COPIED
+##################################################
+$(rsync -v --update -e "ssh -i $COPY_KEY" $COPY_SOURCE $COPY_DESTINATION)
+###################################################
+EOF
+
+bash /home/copy/scripts/spool_empty_alert
+
+### RSYNC COMMAND
+#rsync -v --update -e 'ssh -i $COPY_KEY' $COPY_SOURCE $COPY_DESTINATION >> /home/copy/files.$(date +"%Y%m%d_%H%M%S")
+###
+
+##RSYNC TEST CASE####
+#COPY_KEY="/home/nmonga/keys/servers.key"
+#COPY_SOURCE="mgmt@whitebox2-bm.lab:~/files/*"
+#COPY_DESTINATION="/home/nmonga/files_test/"
+
+###LEGACY CODE###
+#scp -i keys/whitebox_copy.pem copy@monga-whitebox.lab:/media/Videos/TEMP/new_movies/* /media/fileshare/Movies/
+
+#./copy_alert '#fileshare' INFORMATION 'All new movies were copied'

@@ -1,0 +1,13 @@
+#! /bin/bash
+
+set -eu
+
+FILE=""
+DIR="/usr/spool"
+
+# look for empty dir 
+if [ "$(ls -A $DIR)" ]; then
+  bash /home/copy/scripts/slacker '#fileshare' INFORMATION "$DIR is not empty. Please move new files into fileshare"
+fi
+
+# reference: http://www.cyberciti.biz/faq/linux-unix-shell-check-if-directory-empty/
