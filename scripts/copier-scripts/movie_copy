@@ -9,7 +9,7 @@ COPY_SOURCE="copy@monga-whitebox.lab:/media/Videos/TEMP/new_movies/*" # better n
 cat <<EOF >> /home/copy/copy_log/files.$(date +"%Y%m%d_%H%M%S")
 NEW FILES COPIED
 ##################################################
-$(rsync -v --update -e "ssh -i $COPY_KEY" $COPY_SOURCE $COPY_DESTINATION)
+$(rsync -av --update -e "ssh -i $COPY_KEY" $COPY_SOURCE $COPY_DESTINATION)
 ###################################################
 EOF
 
