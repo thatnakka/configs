@@ -1,0 +1,54 @@
+
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export ZSH=/Users/nakulmonga/.oh-my-zsh
+
+alias rm='trash'
+
+alias diga='dig +noall +answer'
+
+function who {
+  curl ipinfo.io/$1
+}
+
+source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE='nerdfont-complete'
+
+# sample configs https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config
+# for icons http://fontawesome.io/cheatsheet/
+# for colors https://unix.stackexchange.com/questions/105568/how-can-i-list-the-available-color-names
+TERM=xterm-256color
+
+POWERLEVEL9K_TIME_BACKGROUND="015"
+POWERLEVEL9K_TIME_FOREGROUND="black"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="000"
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="015"
+POWERLEVEL9K_DIR_HOME_BACKGROUND="blue"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="015"
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="160"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="015"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="015"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="blue"
+POWERLEVEL9K_TIME_FORMAT="\UF43A %D{%I:%M:%S  \UF133  %m.%d.%y}"
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0B0'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
+
+#enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+plugins=(
+  git battery aws zsh-syntax-highlighting zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# zsh syntax highlighting
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
